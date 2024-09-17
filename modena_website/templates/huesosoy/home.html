@@ -1,0 +1,152 @@
+{% extends "huesosoy/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modena - Интернет-магазин одежды</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #444;
+      padding: 15px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background-color: #333; /* Заменил фон изображения на цвет */
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .hero p {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .section {
+      margin: 40px 0;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .product {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 30%;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .product h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    .product p {
+      font-size: 1.1em;
+      color: #555;
+    }
+    .price {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Modena - Стильная одежда для всех</h1>
+  </header>
+
+<nav>
+    <a href="/">Главная</a>
+    <a href="/products/list">Магазин</a>
+    <a href="/about/">О нас</a>
+    <a href="/contacts/">Контакты</a>
+</nav>
+
+  <section class="hero">
+    <h2>Осенние коллекции уже здесь!</h2>
+    <p>Откройте для себя лучшие тренды этого сезона</p>
+  </section>
+
+  <div class="container">
+    <section class="section">
+      <h2>Популярные товары</h2>
+      <div class="product-list">
+        <div class="product">
+          <h3>Куртка женская</h3>
+          <p>Модная куртка для прохладных дней</p>
+          <div class="price">3500 ₽</div>
+        </div>
+        <div class="product">
+          <h3>Кроссовки мужские</h3>
+          <p>Легкие и удобные для повседневной носки</p>
+          <div class="price">4500 ₽</div>
+        </div>
+        <div class="product">
+          <h3>Шапка зимняя</h3>
+          <p>Теплая и стильная шапка для холодных дней</p>
+          <div class="price">1500 ₽</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Modena. Все права защищены.</p>
+  </footer>
+
+</body>
+</html>
+{% endblock %}

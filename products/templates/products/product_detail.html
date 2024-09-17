@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ product.name }} - Product Detail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .product-detail img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .product-detail h1 {
+      font-size: 2em;
+      margin: 20px 0;
+    }
+    .product-detail p {
+      font-size: 1.2em;
+      color: #555;
+      margin: 10px 0;
+    }
+    .price {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .details {
+      margin: 20px 0;
+    }
+    .details div {
+      margin-bottom: 10px;
+    }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px;
+      width: 250px;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100%;
+      height: auto;
+    }
+    .product h3, .product h4 {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+    .product p {
+      font-size: 1.1em;
+      color: #555;
+    }
+    .price {
+      font-weight: bold;
+      margin-top: 12px;
+    }
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 1.1em;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="product-detail">
+      <img src="{{ product.photos.first.photo.url }}" alt="{{ product.name }}"> <!-- Показывает первое изображение -->
+      <h1>{{ product.name }}</h1>
+      <p>{{ product.description }}</p>
+      <div class="price">{{ product.price }} $</div>
+      <div class="details">
+        <div><strong>Category:</strong> {{ product.category.name }}</div>
+        <div><strong>Discount:</strong> {{ product.discount.name|default:"No discount" }}</div>
+        <div><strong>SKU:</strong> {{ product.sku }}</div>
+        <div><strong>Material:</strong> {{ product.material.name|default:"Not specified" }}</div>
+        <div><strong>Gender:</strong> {{ product.gender.name|default:"Not specified" }}</div>
+        <div><strong>Size:</strong> {{ product.size.name|default:"Not specified" }}</div>
+        <div><strong>Colour:</strong> {{ product.colour.name|default:"Not specified" }}</div>
+      </div>
+      <h2>Related Products</h2>
+      <div class="product-list">
+        {% for related_product in product.related_products.all %}
+          <div class="product">
+            <img src="{{ related_product.photos.first.photo.url }}" alt="{{ related_product.name }}">
+            <h3><a href="{% url 'detail' related_product.pk %}">{{ related_product.name }}</a></h3>
+            <p>{{ related_product.description }}</p>
+            <div class="price">{{ related_product.price }} $</div>
+          </div>
+        {% empty %}
+          <p>No related products.</p>
+        {% endfor %}
+      </div>
+      <h2>Full Collection</h2>
+      <div class="product-list">
+        {% for collection_product in product.full_collection.all %}
+          <div class="product">
+            <img src="{{ collection_product.photos.first.photo.url }}" alt="{{ collection_product.name }}">
+            <h4><a href="{% url 'detail' collection_product.pk %}">{{ collection_product.name }}</a></h4>
+            <p>{{ collection_product.price }} $</p>
+          </div>
+        {% empty %}
+          <p>No products in this collection.</p>
+        {% endfor %}
+      </div>
+      <a href="{% url 'list' %}" class="back-link">Back to Products List</a>
+    </div>
+  </div>
+</body>
+</html>

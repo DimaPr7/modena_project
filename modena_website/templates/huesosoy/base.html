@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Modena{% endblock %}</title>
+  {# <link rel="stylesheet" href="{% static 'css/style.css' %}"> #}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Убираем горизонтальную полосу прокрутки */
+    }
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      transition: opacity 0.5s;
+    }
+
+    .slidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.8); /* Прозрачный фон */
+      overflow-x: hidden;
+      transition: width 0.5s;
+      padding-top: 60px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Добавляем тень для глубины */
+    }
+
+    .slidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #f1f1f1;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .slidebar a:hover {
+      color: #f4d03f;
+    }
+
+    .slidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      color: #f1f1f1;
+      cursor: pointer;
+    }
+
+    .slidebar .closebtn:hover {
+      color: #f4d03f;
+    }
+
+    .slidebar .category {
+      position: relative;
+    }
+
+    .slidebar .category .sub-menu {
+      display: none;
+      background-color: #333;
+      padding-left: 20px;
+    }
+
+    .slidebar .category:hover .sub-menu {
+      display: block;
+    }
+
+    .slidebar .category .sub-menu a {
+      font-size: 18px;
+      padding: 10px 0;
+    }
+
+    .content {
+      transition: margin-left 0.5s;
+      padding: 16px;
+    }
+
+    /* Скрываем кнопку открытия меню при открытом меню */
+    #mySlidebar.open + #openBtn {
+      opacity: 0;
+      pointer-events: none; /* Не позволяет кликнуть на кнопку */
+    }
+
+    @media screen and (max-height: 450px) {
+      .slidebar {padding-top: 15px;}
+      .slidebar a {font-size: 18px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Кнопка открытия слайдбара -->
+  <button id="openBtn" class="openbtn" onclick="openNav()">☰</button>
+
+  <!-- Слайдбар -->
+  <div id="mySlidebar" class="slidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/">Главная</a>
+    <div class="category">
+      <a href="javascript:void(0)">Категории</a>
+      <div class="sub-menu">
+        <a href="/products/trousers">Штаны</a>
+        <a href="/products/t-shorts">Рубашки</a>
+      </div>
+    </div>
+    <a href="/about/">О нас</a>
+    <a href="/contacts/">Контакты</a>
+  </div>
+
+  <!-- Контент страницы -->
+  <div class="content">
+    {% block content %}
+    <!-- Здесь будет выводиться контент каждой страницы -->
+    {% endblock %}
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySlidebar").style.width = "250px";
+      document.querySelector(".content").style.marginLeft = "250px"; /* Сдвигаем контент вправо */
+      document.getElementById("openBtn").classList.add('open'); /* Добавляем класс для скрытия кнопки */
+    }
+
+    function closeNav() {
+      document.getElementById("mySlidebar").style.width = "0";
+      document.querySelector(".content").style.marginLeft = "0"; /* Возвращаем контент на место */
+      document.getElementById("openBtn").classList.remove('open'); /* Убираем класс для показа кнопки */
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === "Escape") {
+        closeNav();
+      }
+    });
+
+    // Закрытие меню при клике вне его области
+    document.addEventListener('click', function(event) {
+      const slidebar = document.getElementById('mySlidebar');
+      const openbtn = document.getElementById('openBtn');
+      if (slidebar.style.width === '250px' && !slidebar.contains(event.target) && !openbtn.contains(event.target)) {
+        closeNav();
+      }
+    });
+  </script>
+</body>
+</html>

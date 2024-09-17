@@ -1,0 +1,40 @@
+# Ignore PyCharm project files
+.idea/
+*.iml
+
+# Ignore virtual environments
+venv/
+ENV/
+
+# Ignore compiled bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore database files
+db.sqlite3
+
+# Ignore environment variable settings
+.env
+
+# Ignore static and media files
+/static/
+/media/
+
+# Ignore coverage reports and test results
+htmlcov/
+.tox/
+coverage/
+*.cover
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Ignore Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
