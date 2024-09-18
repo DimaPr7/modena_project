@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, TemplateView, UpdateView
 from django.views.generic import TemplateView
 from core.models import Category
 from .models import Product
@@ -15,28 +16,28 @@ class ProductDetailView(DetailView):
     template_name = "products/product_detail.html"
 
 
-class TrousersListView(ListView):
+class CategoryProductListView(ListView):
     model = Product
-    template_name = "products/trousers_list.html"
+    template_name = "products/category_product_list.html"
+    context_object_name = "products"
 
     def get_queryset(self):
-        try:
-            trousers_category = Category.objects.get(name='Штаны')
-        except Category.DoesNotExist:
-            trousers_category = None
-        return Product.objects.filter(category=trousers_category) if trousers_category else Product.objects.none()
+        category_name = self.kwargs.get("category_name")
+        category = get_object_or_404(Category, name=category_name)
+        return Product.objects.filter(category=category)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_name = self.kwargs.get("category_name")
+        context['category_name'] = category_name
+        return context
 
 
-class TShortsListView(ListView):
+class ProductUpdateView(UpdateView):
     model = Product
-    template_name = "products/t-shorts_list.html"
-
-    def get_queryset(self):
-        try:
-            tshorts_category = Category.objects.get(name='Рубашкa')
-        except Category.DoesNotExist:
-            tshorts_category = None
-        return Product.objects.filter(category=tshorts_category) if tshorts_category else Product.objects.none()
+    fields = "__all__"
+    template_name = "products/product_update.html"
+    success_url = reverse_lazy('products:product_list')
 
 
 class ContactView(TemplateView):

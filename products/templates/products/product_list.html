@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -30,6 +31,13 @@
     .product h2 {
       font-size: 1.5em;
       margin-bottom: 8px;
+      display: inline-block;
+    }
+    .product .edit-icon {
+      font-size: 1.5em;
+      margin-left: 10px;
+      color: #007bff;
+      text-decoration: none;
     }
     .product p {
       font-size: 1.1em;
@@ -41,13 +49,19 @@
     }
   </style>
 </head>
+
 <body>
   <h1>Our Products</h1>
   <div class="product-list">
     {% for product in object_list %}
       <div class="product">
-        <img src="{{ product.photo.url }}" alt="{{ product.name }}">
-        <h2><a href="{% url 'detail' product.pk %}">{{ product.name }}</a></h2>
+        <img src="{{ product.photos.first.photo.url }}" alt="{{ product.name }}">
+        <h2>
+          <a href="{% url 'products:detail' product.pk %}">{{ product.name }}</a>
+          <a href="{% url 'products:update' pk=product.pk %}" class="edit-icon" title="Edit product">
+            <i class="fas fa-pencil-alt"></i> <!-- Значок карандаша -->
+          </a>
+        </h2>
         <p>{{ product.description }}</p>
         <div class="price">{{ product.price }} $</div>
       </div>
@@ -56,5 +70,6 @@
     {% endfor %}
   </div>
 </body>
+
 </html>
 {% endblock %}

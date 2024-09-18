@@ -34,7 +34,7 @@ class Gender(models.Model):
 
 
 class Photo(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_photos", blank=True, null=True)  # Изменено related_name
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_photos")
     image = models.ImageField(upload_to='products/photos/', blank=True, null=True)
 
     def __str__(self):
@@ -42,7 +42,7 @@ class Photo(models.Model):
 
 
 class Size(models.Model):
-    name = models.CharField(max_length=50)  # Название размера (например, S, M, L, XL)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name

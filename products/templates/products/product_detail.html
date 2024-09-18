@@ -95,6 +95,7 @@
     <div class="product-detail">
       <img src="{{ product.photos.first.photo.url }}" alt="{{ product.name }}"> <!-- Показывает первое изображение -->
       <h1>{{ product.name }}</h1>
+      <a href="{% url 'products:update' pk=product.pk %}" class="btn-update">Update Product</a>
       <p>{{ product.description }}</p>
       <div class="price">{{ product.price }} $</div>
       <div class="details">
@@ -111,7 +112,7 @@
         {% for related_product in product.related_products.all %}
           <div class="product">
             <img src="{{ related_product.photos.first.photo.url }}" alt="{{ related_product.name }}">
-            <h3><a href="{% url 'detail' related_product.pk %}">{{ related_product.name }}</a></h3>
+            <h3><a href="{% url 'products:detail' related_product.pk %}">{{ related_product.name }}</a></h3>
             <p>{{ related_product.description }}</p>
             <div class="price">{{ related_product.price }} $</div>
           </div>
@@ -124,14 +125,14 @@
         {% for collection_product in product.full_collection.all %}
           <div class="product">
             <img src="{{ collection_product.photos.first.photo.url }}" alt="{{ collection_product.name }}">
-            <h4><a href="{% url 'detail' collection_product.pk %}">{{ collection_product.name }}</a></h4>
+            <h4><a href="{% url 'products:detail' collection_product.pk %}">{{ collection_product.name }}</a></h4>
             <p>{{ collection_product.price }} $</p>
           </div>
         {% empty %}
           <p>No products in this collection.</p>
         {% endfor %}
       </div>
-      <a href="{% url 'list' %}" class="back-link">Back to Products List</a>
+      <a href="{% url 'products:product_list' %}" class="back-link">Back to Products List</a>
     </div>
   </div>
 </body>

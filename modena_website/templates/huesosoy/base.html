@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Modena{% endblock %}</title>
-  {# <link rel="stylesheet" href="{% static 'css/style.css' %}"> #}
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -105,6 +104,9 @@
   </style>
 </head>
 <body>
+  <!-- Подключение Font Awesome для использования иконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <!-- Кнопка открытия слайдбара -->
   <button id="openBtn" class="openbtn" onclick="openNav()">☰</button>
 
@@ -113,10 +115,10 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/">Главная</a>
     <div class="category">
-      <a href="javascript:void(0)">Категории</a>
+      <a href="{% url 'products:product_list'%}">Категории</a>
       <div class="sub-menu">
-        <a href="/products/trousers">Штаны</a>
-        <a href="/products/t-shorts">Рубашки</a>
+        <a href="{% url 'products:category_products' category_name='Штаны' %}">Штаны</a>
+        <a href="{% url 'products:category_products' category_name='Рубашкa' %}">Рубашки</a>
       </div>
     </div>
     <a href="/about/">О нас</a>
@@ -134,13 +136,15 @@
     function openNav() {
       document.getElementById("mySlidebar").style.width = "250px";
       document.querySelector(".content").style.marginLeft = "250px"; /* Сдвигаем контент вправо */
-      document.getElementById("openBtn").classList.add('open'); /* Добавляем класс для скрытия кнопки */
+      document.getElementById("openBtn").style.opacity = '0'; /* Скрываем кнопку открытия */
+      document.getElementById("openBtn").style.pointerEvents = 'none'; /* Не позволяет кликнуть на кнопку */
     }
 
     function closeNav() {
       document.getElementById("mySlidebar").style.width = "0";
       document.querySelector(".content").style.marginLeft = "0"; /* Возвращаем контент на место */
-      document.getElementById("openBtn").classList.remove('open'); /* Убираем класс для показа кнопки */
+      document.getElementById("openBtn").style.opacity = '1'; /* Показываем кнопку открытия */
+      document.getElementById("openBtn").style.pointerEvents = 'auto'; /* Разрешаем клик на кнопку */
     }
 
     document.addEventListener('keydown', function(event) {
