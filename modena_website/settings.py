@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "products.apps.ProductsConfig",
     "core.apps.CoreConfig",
     "modena_website.apps.ModenaWebsiteConfig",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = "modena_website.urls"

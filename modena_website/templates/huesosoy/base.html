@@ -115,7 +115,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/">Главная</a>
     <div class="category">
-      <a href="{% url 'products:product_list'%}">Категории</a>
+      <a href="{% url 'products:product_list' %}">Категории</a>
       <div class="sub-menu">
         <a href="{% url 'products:category_products' category_name='Штаны' %}">Штаны</a>
         <a href="{% url 'products:category_products' category_name='Рубашкa' %}">Рубашки</a>
@@ -123,7 +123,16 @@
     </div>
     <a href="/about/">О нас</a>
     <a href="/contacts/">Контакты</a>
-  </div>
+
+    {% if user.is_authenticated %}
+{#        <a href="{% url 'account_profile' %}">Личный кабинет</a>#}
+{#        <a href="{% url 'logout' %}">Выход</a>#}
+    {% else %}
+        <a href="{% url 'login' %}">Вход</a>
+        <a href="{% url 'signup' %}">Регистрация</a>
+    {% endif %}
+</div>
+
 
   <!-- Контент страницы -->
   <div class="content">
