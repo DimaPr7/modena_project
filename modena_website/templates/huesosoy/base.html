@@ -97,6 +97,23 @@
       pointer-events: none; /* Не позволяет кликнуть на кнопку */
     }
 
+    .auth-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px 25px;
+    }
+
+    .auth-links i {
+      font-size: 20px;
+      color: #f1f1f1;
+      transition: color 0.3s;
+    }
+
+    .auth-links a:hover i {
+      color: #f4d03f;
+    }
+
     @media screen and (max-height: 450px) {
       .slidebar {padding-top: 15px;}
       .slidebar a {font-size: 18px;}
@@ -112,7 +129,32 @@
 
   <!-- Слайдбар -->
   <div id="mySlidebar" class="slidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="top-bar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+      <!-- Если пользователь залогинен, отображаем иконку аккаунта и кнопку выхода -->
+      {% if user.is_authenticated %}
+        <div class="auth-links">
+          <a href="{% url 'account_profile' %}" class="account-icon">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <a href="{% url 'logout' %}" class="logout-icon">
+            <i class="fas fa-sign-out-alt"></i> Выход
+          </a>
+        </div>
+      {% else %}
+        <!-- Если пользователь не залогинен, отображаем ссылки на вход и регистрацию -->
+        <div class="auth-links">
+          <a href="{% url 'login' %}">
+            <i class="fas fa-sign-in-alt"></i> Вход
+          </a>
+          <a href="{% url 'signup' %}">
+            <i class="fas fa-user-plus"></i> Регистрация
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
     <a href="/">Главная</a>
     <div class="category">
       <a href="{% url 'products:product_list' %}">Категории</a>
@@ -123,16 +165,7 @@
     </div>
     <a href="/about/">О нас</a>
     <a href="/contacts/">Контакты</a>
-
-    {% if user.is_authenticated %}
-{#        <a href="{% url 'account_profile' %}">Личный кабинет</a>#}
-{#        <a href="{% url 'logout' %}">Выход</a>#}
-    {% else %}
-        <a href="{% url 'login' %}">Вход</a>
-        <a href="{% url 'signup' %}">Регистрация</a>
-    {% endif %}
-</div>
-
+  </div>
 
   <!-- Контент страницы -->
   <div class="content">

@@ -1,6 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import AbstractUser
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.views.generic import DetailView
+
 from .forms import SignUpForm
 from django.contrib.auth import get_user_model
 
@@ -33,4 +36,17 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+
+class AccountView(DetailView):
+    model = User
+    template_name = "account.html"
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 

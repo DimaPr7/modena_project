@@ -1,0 +1,99 @@
+{% extends "huesosoy/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-info img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .profile-info div {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            color: #444;
+        }
+
+        .profile-info p {
+            color: #777;
+            margin: 5px 0;
+        }
+
+        .profile-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .profile-actions a {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-actions a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Профиль пользователя</h1>
+
+        <div class="profile-info">
+            <img src="https://via.placeholder.com/150" alt="Аватар пользователя"> <!-- Можно использовать заглушку -->
+            <div>
+                <h2>{{ user.username }}</h2>
+                <p>Email: {{ user.email }}</p>
+                <p>Дата регистрации: {{ user.date_joined|date:"d M Y" }}</p>
+                <p>Последний вход: {{ user.last_login|date:"d M Y H:i" }}</p>
+            </div>
+        </div>
+
+{#        <div class="profile-actions">#}
+{#            <a href="{% url 'logout' %}">Выйти</a>#}
+{#        </div>#}
+    </div>
+</body>
+</html>
+{% endblock %}
