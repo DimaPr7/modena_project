@@ -5,5 +5,5 @@ from products.models import Product
 
 class HomePageView(ListView):
     model = Product
-    template_name = "huesosoy/home.html"
+    template_name = "home.html"
 
