@@ -55,12 +55,18 @@
   <div class="product-list">
     {% for product in object_list %}
       <div class="product">
-        <img src="{{ product.photos.first.photo.url }}" alt="{{ product.name }}">
+        {% if product.photos.first %}
+          <img src="{{ product.photos.first.image.url }}" alt="{{ product.name }}">
+        {% else %}
+          <img src="/path/to/placeholder.jpg" alt="No image available">
+        {% endif %}
         <h2>
           <a href="{% url 'products:detail' product.pk %}">{{ product.name }}</a>
-          <a href="{% url 'products:update' pk=product.pk %}" class="edit-icon" title="Edit product">
-            <i class="fas fa-pencil-alt"></i> <!-- Значок карандаша -->
-          </a>
+          {% if user.is_staff %}
+            <a href="{% url 'products:update' pk=product.pk %}" class="edit-icon" title="Edit product">
+              <i class="fas fa-pencil-alt"></i> <!-- Значок карандаша -->
+            </a>
+          {% endif %}
         </h2>
         <p>{{ product.description }}</p>
         <div class="price">{{ product.price }} $</div>

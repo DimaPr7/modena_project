@@ -22,6 +22,7 @@
         .product-detail img {
             max-width: 100%;
             height: auto;
+            max-height: 400px;
             border-radius: 10px;
         }
         .product-detail h1 {
@@ -76,7 +77,7 @@
             color: #666;
         }
         .back-link {
-            margin-top: 20px;
+            margin-bottom: 20px; /* Отступ снизу для отделения от заголовка товара */
             display: inline-block;
             text-decoration: none;
             color: #007bff;
@@ -101,18 +102,37 @@
 <body>
     <div class="container">
         <div class="product-detail text-center">
-            <img src="{{ product.photos.first.photo.url }}" alt="{{ product.name }}">
-            <h1>{{ product.name }}</h1>
-            {% if user.is_staff %}
-                <a href="{% url 'products:update' pk=product.pk %}" class="btn-update">Update Product</a>
+            <!-- Стрелка для возврата к списку товаров -->
+            <a href="{% url 'products:product_list' %}" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Products List
+            </a>
+
+            <!-- Изображение товара -->
+            {% if product.photos.first %}
+                <img src="{{ product.photos.first.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <img src="/path/to/placeholder.jpg" alt="No image available">
             {% endif %}
+
+            <!-- Название товара и иконка редактирования -->
+            <h1 class="product-title">
+                {{ product.name }}
+                {% if user.is_staff %}
+                    <a href="{% url 'products:update' pk=product.pk %}" class="edit-icon" title="Edit product">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                {% endif %}
+            </h1>
+
             <p>{{ product.description }}</p>
-            <div class="price">{{ product.price }} $</div>
+            <div class="price">{{ product.price }} рублей</div>
             <div class="details">
                 <div><strong>Category:</strong> <a href="{% url 'products:category_products' product.category.name %}">{{ product.category.name }}</a></div>
-                {% if user.is_staff %}<div><strong>Discount:</strong> {{ product.discount.name|default:"No discount" }}</div>{% endif %}
-                {% if user.is_staff %}<div><strong>SKU:</strong> {{ product.sku }}</div>{% endif %}
-                <div><strong>Material:</strong>{{ product.material.name|default:"Not specified" }}</div>
+                {% if user.is_staff %}
+                    <div><strong>Discount:</strong> {{ product.discount.name|default:"No discount" }}</div>
+                    <div><strong>SKU:</strong> {{ product.sku }}</div>
+                {% endif %}
+                <div><strong>Material:</strong> {{ product.material.name|default:"Not specified" }}</div>
                 <div><strong>Gender:</strong> {{ product.gender.name|default:"Not specified" }}</div>
                 <div><strong>Size:</strong> {{ product.size.name|default:"Not specified" }}</div>
                 <div><strong>Colour:</strong> {{ product.colour.name|default:"Not specified" }}</div>
@@ -123,10 +143,14 @@
                 <div class="d-flex flex-wrap justify-content-center">
                     {% for related_product in product.related_products.all %}
                         <div class="product">
-                            <img src="{{ related_product.photos.first.photo.url }}" alt="{{ related_product.name }}">
+                            {% if related_product.photos.first %}
+                                <img src="{{ related_product.photos.first.image.url }}" alt="{{ related_product.name }}">
+                            {% else %}
+                                <img src="/path/to/placeholder.jpg" alt="No image available">
+                            {% endif %}
                             <h3><a href="{% url 'products:detail' related_product.pk %}">{{ related_product.name }}</a></h3>
                             <p>{{ related_product.description }}</p>
-                            <div class="price">{{ related_product.price }} $</div>
+                            <div class="price">{{ related_product.price }} рублей</div>
                         </div>
                     {% empty %}
                         <p>No related products.</p>
@@ -139,7 +163,11 @@
                 <div class="d-flex flex-wrap justify-content-center">
                     {% for collection_product in product.full_collection.all %}
                         <div class="product">
-                            <img src="{{ collection_product.photos.first.photo.url }}" alt="{{ collection_product.name }}">
+                            {% if collection_product.photos.first %}
+                                <img src="{{ collection_product.photos.first.image.url }}" alt="{{ collection_product.name }}">
+                            {% else %}
+                                <img src="/path/to/placeholder.jpg" alt="No image available">
+                            {% endif %}
                             <h4><a href="{% url 'products:detail' collection_product.pk %}">{{ collection_product.name }}</a></h4>
                             <p>{{ collection_product.price }} $</p>
                         </div>
