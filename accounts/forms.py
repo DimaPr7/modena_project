@@ -13,6 +13,12 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo

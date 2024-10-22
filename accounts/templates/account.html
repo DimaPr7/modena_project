@@ -87,6 +87,10 @@
                 <p>Email: {{ user.email }}</p>
                 <p>Дата регистрации: {{ user.date_joined|date:"d M Y" }}</p>
                 <p>Последний вход: {{ user.last_login|date:"d M Y H:i" }}</p>
+              <div class="profile-actions">
+    <a href="{% url 'account_update' %}" class="btn btn-info">Редактировать профиль</a>
+</div>
+
             </div>
         </div>
 

@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import DetailView
 
-from .forms import SignUpForm
+from .forms import SignUpForm, UserUpdateForm
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -49,4 +50,17 @@ class AccountView(DetailView):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+@login_required
+def profile_update(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Перенаправление на страницу профиля после сохранения
+    else:
+        form = UserUpdateForm(instance=request.user)
+
+    return render(request, 'profile_update.html', {'form': form})
 
