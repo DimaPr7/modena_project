@@ -7,3 +7,4 @@ class HomePageView(ListView):
     model = Product
     template_name = "home.html"
 
+

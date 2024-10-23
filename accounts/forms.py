@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import User
 from django.contrib.auth.forms import UserCreationForm
 
+from accounts.models import CustomUser
 from core.models import Photo
 
 
@@ -15,8 +16,8 @@ class SignUpForm(UserCreationForm):
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = '__all__'
+        model = CustomUser
+        fields = ['username', 'email', 'image']
 
 
 class PhotoForm(forms.ModelForm):

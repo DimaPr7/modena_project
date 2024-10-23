@@ -19,7 +19,7 @@
         .login-container {
             background-color: #fff;
             padding: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 100%;
             max-width: 400px;
@@ -38,49 +38,73 @@
         }
 
         .login-container input {
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #ccc;
+            transition: border 0.3s;
+        }
+
+        .login-container input:focus {
+            border: 1px solid #5a189a; /* Цвет рамки при фокусе */
+            outline: none; /* Убираем стандартный контур */
         }
 
         .login-container button {
-            padding: 10px;
-            background-color: #333;
+            padding: 12px;
+            background-color: #5a189a; /* Основной цвет кнопки */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s; /* Плавный переход для фона */
         }
 
         .login-container button:hover {
-            background-color: #555;
+            background-color: #4e167f; /* Более темный цвет при наведении */
         }
 
         .login-container a {
             display: block;
             margin-top: 15px;
-            color: #333;
+            color: #5a189a; /* Цвет ссылки */
             text-decoration: none;
+            transition: color 0.3s; /* Плавный переход для цвета ссылки */
         }
 
         .login-container a:hover {
+            color: #4e167f; /* Темный цвет при наведении */
             text-decoration: underline;
+        }
+
+        .error-message {
+            color: red; /* Цвет для сообщений об ошибках */
+            margin: 10px 0;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
         <h1>Вход</h1>
+        {% if form.non_field_errors %}
+            <div class="error-message">{{ form.non_field_errors }}</div>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <div>
                 {{ form.username.label_tag }}
                 {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error-message">{{ form.username.errors }}</div>
+                {% endif %}
             </div>
             <div>
                 {{ form.password.label_tag }}
                 {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="error-message">{{ form.password.errors }}</div>
+                {% endif %}
             </div>
             <button type="submit">Войти</button>
         </form>

@@ -8,6 +8,8 @@ from django.views.generic import DetailView
 from .forms import SignUpForm, UserUpdateForm
 from django.contrib.auth import get_user_model
 
+from .models import CustomUser
+
 User = get_user_model()
 
 
@@ -40,7 +42,7 @@ def login_view(request):
 
 
 class AccountView(DetailView):
-    model = User
+    model = CustomUser
     template_name = "account.html"
 
     def get_object(self, queryset=None):
@@ -58,9 +60,9 @@ def profile_update(request):
         form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Перенаправление на страницу профиля после сохранения
+            return redirect('account_profile')  # Перенаправление на страницу профиля после сохранения
     else:
         form = UserUpdateForm(instance=request.user)
 
-    return render(request, 'profile_update.html', {'form': form})
+    return render(request, 'account_update.html', {'form': form})
 

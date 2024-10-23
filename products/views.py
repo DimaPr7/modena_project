@@ -41,8 +41,8 @@ class ProductUpdateView(UpdateView):
 
 
 class ContactView(TemplateView):
-    template_name = 'products/contacts.html'
+    template_name = 'contacts.html'
 
 
 class AboutUsView(TemplateView):
-    template_name = 'products/about_us.html'
+    template_name = 'about_us.html'

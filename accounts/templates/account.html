@@ -1,103 +1,108 @@
 {% extends "base.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль пользователя</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+<div class="container">
+    <h1>Профиль пользователя</h1>
 
-        .container {
-            width: 80%;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    <div class="profile-info">
+        <img src="https://via.placeholder.com/150" alt="Аватар пользователя">
+        <div>
+            <h2>{{ user.username }}</h2>
+            <p>Email: <strong>{{ user.email }}</strong></p>
+            <p>Дата регистрации: <strong>{{ user.date_joined|date:"d M Y" }}</strong></p>
+            <p>Последний вход: <strong>{{ user.last_login|date:"d M Y H:i" }}</strong></p>
+        </div>
+    </div>
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .profile-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-info img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .profile-info div {
-            flex-grow: 1;
-            margin-left: 20px;
-        }
-
-        .profile-info h2 {
-            margin: 0;
-            color: #444;
-        }
-
-        .profile-info p {
-            color: #777;
-            margin: 5px 0;
-        }
-
-        .profile-actions {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .profile-actions a {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .profile-actions a:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Профиль пользователя</h1>
-
-        <div class="profile-info">
-            <img src="https://via.placeholder.com/150" alt="Аватар пользователя"> <!-- Можно использовать заглушку -->
-            <div>
-                <h2>{{ user.username }}</h2>
-                <p>Email: {{ user.email }}</p>
-                <p>Дата регистрации: {{ user.date_joined|date:"d M Y" }}</p>
-                <p>Последний вход: {{ user.last_login|date:"d M Y H:i" }}</p>
-              <div class="profile-actions">
-    <a href="{% url 'account_update' %}" class="btn btn-info">Редактировать профиль</a>
+    <div class="profile-actions">
+        <a href="{% url 'account_update' %}" class="btn btn-primary">Редактировать профиль</a>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Выйти</a>
+    </div>
 </div>
 
-            </div>
-        </div>
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-{#        <div class="profile-actions">#}
-{#            <a href="{% url 'logout' %}">Выйти</a>#}
-{#        </div>#}
-    </div>
-</body>
-</html>
+    .container {
+        width: 80%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #5a189a;
+        margin-bottom: 20px;
+    }
+
+    .profile-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #f4f4f4;
+        padding-bottom: 20px;
+    }
+
+    .profile-info img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 3px solid #5a189a;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-info div {
+        flex-grow: 1;
+        margin-left: 20px;
+    }
+
+    .profile-info h2 {
+        margin: 0;
+        color: #333;
+    }
+
+    .profile-info p {
+        color: #777;
+        margin: 5px 0;
+        font-size: 1.1rem;
+    }
+
+    .profile-actions {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .profile-actions a {
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #5a189a;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .profile-actions a:hover {
+        background-color: #3a0f73;
+        transform: translateY(-2px);
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+</style>
 {% endblock %}
