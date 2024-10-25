@@ -4,7 +4,7 @@
     <h1>Профиль пользователя</h1>
 
     <div class="profile-info">
-        <img src="https://via.placeholder.com/150" alt="Аватар пользователя">
+        <img src="{{ user.image.url }}" alt="Аватар пользователя" onerror="this.onerror=null; this.src='https://via.placeholder.com/150';">
         <div>
             <h2>{{ user.username }}</h2>
             <p>Email: <strong>{{ user.email }}</strong></p>

@@ -3,7 +3,7 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    image = models.ImageField(upload_to='products/photos/', default='default.jpg')
+    image = models.ImageField(upload_to='media/products/photos/', default='default.jpg')
 
     groups = models.ManyToManyField(
         Group,
