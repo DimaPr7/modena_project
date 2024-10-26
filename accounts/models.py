@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
         blank=True,
     )
     user_permissions = models.ManyToManyField(
-        Permission
+        Permission,
         related_name='customuser_set',  # Уникальное имя для обратной ссылки
         blank=True,
     )
