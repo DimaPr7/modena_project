@@ -1,115 +1,38 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}О нас{% endblock %}
+{% block title %}About Us{% endblock %}
 
 {% block content %}
-<div class="container-fluid py-5" style="background: linear-gradient(135deg, #f3e6ff, #fff);">
-  <div class="container text-center">
-    <h1 class="display-3 mb-3" style="font-weight: 700; letter-spacing: 1px; color: #5a189a;">О нас</h1>
-    <p class="lead mb-5" style="font-size: 1.2rem; color: #6c757d;">
-      Добро пожаловать в Modena — пространство стиля и качества. Узнайте больше о нас!
-    </p>
-  </div>
+    <!-- About Us -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">About Us</h2>
+            <p class="text-center">We are passionate about delivering high-quality clothing that combines comfort and style. Our mission is to make fashion accessible for everyone.</p>
+        </div>
+    </section>
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <section class="mb-5">
-          <h2 class="text-center" style="font-weight: 600; color: #5a189a;">Наша история</h2>
-          <p class="mt-4 text-center" style="font-size: 1.1rem; line-height: 1.8; color: #4f4f4f;">
-            Основанная в [год основания], Modena стала воплощением современного стиля и высокого качества. Наша команда
-            стремится к созданию уникального опыта для каждого клиента, предлагая только лучшие товары.
-          </p>
-        </section>
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Our History</h2>
+            <p class="text-center">We are passionate about delivering high-quality clothing that combines comfort and style. Our mission is to make fashion accessible for everyone.</p>
+        </div>
+    </section>
 
-        <section class="mb-5">
-          <h2 class="text-center" style="font-weight: 600; color: #5a189a;">Что мы предлагаем</h2>
-          <p class="mt-4 text-center" style="font-size: 1.1rem; line-height: 1.8; color: #4f4f4f;">
-            Мы предлагаем широкий выбор [категория товаров, например, женской и мужской одежды, обуви и аксессуаров],
-            которые подойдут для любого события и подчеркивают вашу индивидуальность.
-          </p>
-        </section>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Goal</h2>
+            <p class="text-center">We are passionate about delivering high-quality clothing that combines comfort and style. Our mission is to make fashion accessible for everyone.</p>
+        </div>
+    </section>
 
-        <section class="mb-5">
-          <h2 class="text-center" style="font-weight: 600; color: #5a189a;">Наша команда</h2>
-          <p class="mt-4 text-center" style="font-size: 1.1rem; line-height: 1.8; color: #4f4f4f;">
-            Мы гордимся нашей командой профессионалов, которые посвятили себя тому, чтобы обеспечить лучшее обслуживание
-            каждому нашему клиенту. Мы всегда рядом, чтобы помочь вам найти идеальный образ.
-          </p>
-        </section>
-
-        <section class="mb-5">
-          <h2 class="text-center" style="font-weight: 600; color: #5a189a;">Наши ценности</h2>
-          <div class="d-flex justify-content-center mt-4">
-            <ul class="list-unstyled text-left" style="max-width: 600px;">
-              <li class="mb-3">
-                <strong style="color: #5a189a;">Качество:</strong> Мы выбираем только лучшие материалы и товары.
-              </li>
-              <li class="mb-3">
-                <strong style="color: #5a189a;">Обслуживание:</strong> Каждый наш клиент для нас уникален.
-              </li>
-              <li>
-                <strong style="color: #5a189a;">Стиль:</strong> Мы всегда следим за трендами, чтобы предложить вам только актуальные и модные вещи.
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="mb-5">
-          <h2 class="text-center" style="font-weight: 600; color: #5a189a;">Контактная информация</h2>
-          <p class="text-center mt-4" style="font-size: 1.1rem; line-height: 1.8; color: #4f4f4f;">
-            Мы всегда рады помочь! Свяжитесь с нами по адресу [Ваш адрес], по телефону [Ваш телефон] или напишите нам на <a href="mailto:[Ваш email]" style="color: #5a189a; text-decoration: none;">[Ваш email]</a>.
-          </p>
-        </section>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-  body {
-    font-family: 'Montserrat', sans-serif;
-    color: #4f4f4f;
-    line-height: 1.6;
-  }
-
-  h1, h2 {
-    font-family: 'Playfair Display', serif;
-  }
-
-  p, li {
-    font-size: 1.1rem;
-    color: #4f4f4f;
-  }
-
-  a {
-    color: #5a189a;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  a:hover {
-    text-decoration: underline;
-    color: #3a0f73;
-  }
-
-  .container-fluid {
-    background-color: #f3f0ff;
-    padding-bottom: 50px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  section {
-    padding: 20px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    margin-bottom: 30px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-</style>
+    <!-- Subscribe -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Stay Updated</h2>
+            <form class="d-flex justify-content-center">
+                <input type="email" class="form-control w-50" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary ms-2">Subscribe</button>
+            </form>
+        </div>
+    </section>
 {% endblock %}

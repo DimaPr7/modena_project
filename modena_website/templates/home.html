@@ -2,214 +2,220 @@
 
 {% block content %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modena - Интернет-магазин одежды</title>
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-    }
-
-    header {
-      background: linear-gradient(135deg, #ff7e5f, #feb47b);
-      color: white;
-      padding: 30px 0;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #333;
-      padding: 15px 0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 25px;
-      font-weight: 600;
-      font-size: 1.2em;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #ff7e5f;
-    }
-
-    .hero {
-      background: url('/static/images/hero-image.jpg') center/cover no-repeat;
-      color: white;
-      padding: 100px 20px;
-      text-align: center;
-      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero h2 {
-      font-size: 4em;
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: fadeInDown 1s ease-in-out;
-    }
-
-    .hero p {
-      font-size: 1.8em;
-      margin-top: 20px;
-      animation: fadeInUp 1.5s ease-in-out;
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .container {
-      width: 90%;
-      margin: 0 auto;
-      padding: 50px 0;
-    }
-
-    .section {
-      margin: 60px 0;
-      text-align: center;
-    }
-
-    .section h2 {
-      margin-bottom: 40px;
-      font-size: 2.5em;
-      text-transform: uppercase;
-      color: #333;
-      position: relative;
-    }
-
-    .section h2::after {
-      content: '';
-      width: 80px;
-      height: 4px;
-      background-color: #ff7e5f;
-      position: absolute;
-      left: 50%;
-      bottom: -10px;
-      transform: translateX(-50%);
-    }
-
-    .product-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    .product {
-      background-color: white;
-      border-radius: 15px;
-      width: 30%;
-      padding: 20px;
-      margin-bottom: 40px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .product:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-    }
-
-    .product h3 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    .product p {
-      font-size: 1.1em;
-      color: #777;
-      margin-bottom: 20px;
-    }
-
-    .price {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #ff7e5f;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 30px 0;
-      margin-top: 60px;
-      font-size: 1.2em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.html">
+    <link rel="stylesheet" href="shop.html">
+    <title>Document</title>
 </head>
 <body>
+    <!-- Nav bar -->
 
-  <header>
-    <h1>Modena - Стильная одежда для всех</h1>
-  </header>
-
-  <nav>
-    <a href="/">Главная</a>
-    <a href="/products/list">Магазин</a>
-    <a href="/about/">О нас</a>
-    <a href="/contacts/">Контакты</a>
-  </nav>
-
-  <section class="hero">
-    <h2>Осенние коллекции уже здесь!</h2>
-    <p>Откройте для себя лучшие тренды этого сезона</p>
-  </section>
-
-  <div class="container">
-    <section class="section">
-      <h2>Популярные товары</h2>
-      <div class="product-list">
-        <div class="product">
-          <h3>Куртка женская</h3>
-          <p>Модная куртка для прохладных дней</p>
-          <div class="price">3500 ₽</div>
+    <!-- carosel -->
+    <div id="carouselExampleCaptions" class="carousel slide ">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div class="product">
-          <h3>Кроссовки мужские</h3>
-          <p>Легкие и удобные для повседневной носки</p>
-          <div class="price">4500 ₽</div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/media/other/male.png" class="d-block w-100" style = "height: 5%;" alt="Nike shoe">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/media/other/people.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/media/other/chicken%202.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
         </div>
-        <div class="product">
-          <h3>Шапка зимняя</h3>
-          <p>Теплая и стильная шапка для холодных дней</p>
-          <div class="price">1500 ₽</div>
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-    </section>
-  </div>
 
-  <footer>
-    <p>&copy; 2024 Modena. Все права защищены.</p>
-  </footer>
+      <!-- Product -->
+      <section class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">Featured Products</h2>
+          <div class="row">
+            <!-- Product 1 -->
+            <div class="col-md-4">
+              <div class="card">
+                <img src="" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                  <h5 class="card-title">Stylish Jacket</h5>
+                  <p class="card-text">$49.99</p>
+                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+              </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="col-md-4">
+              <div class="card">
+                <img src="/" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                  <h5 class="card-title">Nike Shoe</h5>
+                  <p class="card-text">$99.99</p>
+                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+              </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="col-md-4">
+              <div class="card">
+                <img src="product1.jpg" class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                  <h5 class="card-title">Stylish Jacket</h5>
+                  <p class="card-text">$51.99</p>
+                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <a href="shop.html" class="">Continue shopping...</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
+
+      <!-- Category -->
+      <section class="py-5 bg-light">
+        <div class="container">
+          <h2 class="text-center mb-4">Shop by Category</h2>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <a href="#"><img src="mens.jpg" class="img-fluid rounded-circle" alt="Men's Clothing"></a>
+              <h4>Men's Clothing</h4>
+            </div>
+            <div class="col-md-4 text-center">
+              <a href="#"><img src="womens.jpg" class="img-fluid rounded-circle" alt="Women's Clothing"></a>
+              <h4>Women's Clothing</h4>
+            </div>
+            <div class="col-md-4 text-center">
+              <a href="#"><img src="accessories.jpg" class="img-fluid rounded-circle" alt="Accessories"></a>
+              <h4>Accessories</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <section class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">What Our Customers Say</h2>
+          <div class="row">
+            <div class="col-md-4">
+              <blockquote class="blockquote">
+                <p>"Amazing quality and fast delivery! Will definitely shop again."</p>
+                <footer class="blockquote-footer">John Doe</footer>
+              </blockquote>
+            </div>
+            <div class="col-md-4">
+              <blockquote class="blockquote">
+                <p>"The designs are unique and perfect for any occasion."</p>
+                <footer class="blockquote-footer">Jane Smith</footer>
+              </blockquote>
+            </div>
+            <div class="col-md-4">
+              <blockquote class="blockquote">
+                <p>"Great prices and excellent customer service!"</p>
+                <footer class="blockquote-footer">Emma Brown</footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Us -->
+      <section class="py-5 bg-light">
+        <div class="container">
+          <h2 class="text-center mb-4">About Us</h2>
+          <p class="text-center">We are passionate about delivering high-quality clothing that combines comfort and style. Our mission is to make fashion accessible for everyone.</p>
+        </div>
+      </section>
+
+      <!-- Subscribe -->
+      <section class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">Stay Updated</h2>
+          <form class="d-flex justify-content-center">
+            <input type="email" class="form-control w-50" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary ms-2">Subscribe</button>
+          </form>
+        </div>
+      </section>
+      
+      <!-- footer -->
+      <footer class="py-4 bg-dark text-white">
+        <div class="container">
+          <div class="row">
+            <!-- Contact Us Section -->
+            <div class="col-md-4">
+              <h5>Contact Us</h5>
+              <p>Email: <a href="mailto:support@yourbrand.com" class="text-white">support@yourbrand.com</a></p>
+              <p>Phone: +1 (123) 456-7890</p>
+            </div>
+      
+            <!-- Social Media Links -->
+            <div class="col-md-4 text-center">
+              <h5>Follow Us</h5>
+              <a href="https://www.instagram.com/yourbrand" class="text-white me-3" target="_blank">
+                <i class="bi bi-instagram"></i> Instagram
+              </a>
+              <a href="https://www.tiktok.com/@yourbrand" class="text-white me-3" target="_blank">
+                <i class="bi bi-tiktok"></i> TikTok
+              </a>
+              <a href="https://twitter.com/yourbrand" class="text-white" target="_blank">
+                <i class="bi bi-twitter"></i> Twitter
+              </a>
+            </div>
+      
+            <!-- Quick Links -->
+            <div class="col-md-4">
+              <h5>Quick Links</h5>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Privacy Policy</a></li>
+                <li><a href="#" class="text-white">Terms of Service</a></li>
+                <li><a href="#" class="text-white">FAQ</a></li>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="text-center mt-3">
+            <p>&copy; 2024 Your Brand. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+<script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
 </body>
 </html>
 {% endblock %}

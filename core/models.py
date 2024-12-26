@@ -1,6 +1,8 @@
 from django.db import models
 
 from products.models import Product
+from django.utils.translation import gettext_lazy as _
+
 
 
 class Category(models.Model):
@@ -27,10 +29,11 @@ class Material(models.Model):
 
 
 class Gender(models.Model):
-    name = models.CharField(max_length=50)  # Название пола (например, Мужской, Женский, Унисекс)
-
-    def __str__(self):
-        return self.name
+    name = models.CharField(max_length=10, unique=True, choices=[
+        ('mens', _('Mens')),
+        ('womens', _('Womans')),
+        ('kids', _('Kids')),
+    ])
 
 
 class Photo(models.Model):

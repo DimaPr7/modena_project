@@ -1,208 +1,93 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Modena{% endblock %}</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* Убираем горизонтальную полосу прокрутки */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Modena{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
 
-    .openbtn {
-      font-size: 20px;
-      cursor: pointer;
-      background-color: #333;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      border-radius: 5px;
-      z-index: 1000;
-      transition: opacity 0.5s;
-    }
-
-    .slidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.8); /* Прозрачный фон */
-      overflow-x: hidden;
-      transition: width 0.5s;
-      padding-top: 60px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Добавляем тень для глубины */
-    }
-
-    .slidebar a {
-      padding: 15px 25px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #f1f1f1;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .slidebar a:hover {
-      color: #f4d03f;
-    }
-
-    .slidebar .closebtn {
-      position: absolute;
-      top: 0;
-      right: 25px;
-      font-size: 36px;
-      color: #f1f1f1;
-      cursor: pointer;
-    }
-
-    .slidebar .closebtn:hover {
-      color: #f4d03f;
-    }
-
-    .slidebar .category {
-      position: relative;
-    }
-
-    .slidebar .category .sub-menu {
-      display: none;
-      background-color: #333;
-      padding-left: 20px;
-    }
-
-    .slidebar .category:hover .sub-menu {
-      display: block;
-    }
-
-    .slidebar .category .sub-menu a {
-      font-size: 18px;
-      padding: 10px 0;
-    }
-
-    .content {
-      transition: margin-left 0.5s;
-      padding: 16px;
-    }
-
-    /* Скрываем кнопку открытия меню при открытом меню */
-    #mySlidebar.open + #openBtn {
-      opacity: 0;
-      pointer-events: none; /* Не позволяет кликнуть на кнопку */
-    }
-
-    .auth-links {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 10px 25px;
-    }
-
-    .auth-links i {
-      font-size: 20px;
-      color: #f1f1f1;
-      transition: color 0.3s;
-    }
-
-    .auth-links a:hover i {
-      color: #f4d03f;
-    }
-
-    @media screen and (max-height: 450px) {
-      .slidebar {padding-top: 15px;}
-      .slidebar a {font-size: 18px;}
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <!-- Подключение Font Awesome для использования иконок -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  <!-- Кнопка открытия слайдбара -->
-  <button id="openBtn" class="openbtn" onclick="openNav()">☰</button>
-
-  <!-- Слайдбар -->
-  <div id="mySlidebar" class="slidebar">
-    <div class="top-bar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-      <!-- Если пользователь залогинен, отображаем иконку аккаунта и кнопку выхода -->
-      {% if user.is_authenticated %}
-        <div class="auth-links">
-          <a href="{% url 'account_profile' %}" class="account-icon">
-            <i class="fas fa-user-circle"></i>
-          </a>
-          <a href="{% url 'logout' %}" class="logout-icon">
-            <i class="fas fa-sign-out-alt"></i> Выход
-          </a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/about/">About Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/contacts/">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/shop/">Shop</a></li>
+                <!-- Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <li><a class="dropdown-item" href="#">Men</a></li>
+                        <li><a class="dropdown-item" href="#">Women</a></li>
+                        <li><a class="dropdown-item" href="#">Children</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/cart/">Cart</a></li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <a href="{% url 'login' %}" class="btn btn-primary ms-2">Login</a>
+            </form>
         </div>
-      {% else %}
-        <!-- Если пользователь не залогинен, отображаем ссылки на вход и регистрацию -->
-        <div class="auth-links">
-          <a href="{% url 'login' %}">
-            <i class="fas fa-sign-in-alt"></i> Вход
-          </a>
-          <a href="{% url 'signup' %}">
-            <i class="fas fa-user-plus"></i> Регистрация
-          </a>
-        </div>
-      {% endif %}
+    </div>
+</nav>
+
+
+    <!-- Main content -->
+    <div class="content">
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
     </div>
 
-    <a href="/">Главная</a>
-    <div class="category">
-      <a href="{% url 'products:product_list' %}">Категории</a>
-      <div class="sub-menu">
-        <a href="{% url 'products:category_products' category_name='Штаны' %}">Штаны</a>
-        <a href="{% url 'products:category_products' category_name='Рубашкa' %}">Рубашки</a>
-      </div>
-    </div>
-    <a href="/about/">О нас</a>
-    <a href="/contacts/">Контакты</a>
-  </div>
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Email: <a href="mailto:support@yourbrand.com" class="text-white">support@yourbrand.com</a></p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Follow Us</h5>
+                    <div class="footer-icons">
+                        <a href="https://www.instagram.com/yourbrand" class="me-3" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@yourbrand" class="me-3" target="_blank"><i class="bi bi-tiktok"></i></a>
+                        <a href="https://twitter.com/yourbrand" target="_blank"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>&copy; 2024 Your Brand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Контент страницы -->
-  <div class="content">
-    {% block content %}
-    <!-- Здесь будет выводиться контент каждой страницы -->
-    {% endblock %}
-  </div>
-
-  <script>
-    function openNav() {
-      document.getElementById("mySlidebar").style.width = "250px";
-      document.querySelector(".content").style.marginLeft = "250px"; /* Сдвигаем контент вправо */
-      document.getElementById("openBtn").style.opacity = '0'; /* Скрываем кнопку открытия */
-      document.getElementById("openBtn").style.pointerEvents = 'none'; /* Не позволяет кликнуть на кнопку */
-    }
-
-    function closeNav() {
-      document.getElementById("mySlidebar").style.width = "0";
-      document.querySelector(".content").style.marginLeft = "0"; /* Возвращаем контент на место */
-      document.getElementById("openBtn").style.opacity = '1'; /* Показываем кнопку открытия */
-      document.getElementById("openBtn").style.pointerEvents = 'auto'; /* Разрешаем клик на кнопку */
-    }
-
-    document.addEventListener('keydown', function(event) {
-      if (event.key === "Escape") {
-        closeNav();
-      }
-    });
-
-    // Закрытие меню при клике вне его области
-    document.addEventListener('click', function(event) {
-      const slidebar = document.getElementById('mySlidebar');
-      const openbtn = document.getElementById('openBtn');
-      if (slidebar.style.width === '250px' && !slidebar.contains(event.target) && !openbtn.contains(event.target)) {
-        closeNav();
-      }
-    });
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

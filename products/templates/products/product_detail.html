@@ -164,13 +164,25 @@
             <p>{{ product.description }}</p>
             <div class="price">{{ product.price }} рублей</div>
             <div class="details">
-                <div><strong>Category:</strong> <a href="{% url 'products:category_products' product.category.name %}">{{ product.category.name }}</a></div>
+                <div>
+                <p>
+                  <strong>Category:</strong>
+                  <a href="{% url 'products:type_category_products' type_name=product.gender.name category_name=product.category.name %}">
+                      {{ product.category.name }}
+                  </a>
+                </p>
+
                 {% if user.is_staff %}
                     <div><strong>Discount:</strong> {{ product.discount.name|default:"No discount" }}</div>
                     <div><strong>SKU:</strong> {{ product.sku }}</div>
                 {% endif %}
                 <div><strong>Material:</strong> {{ product.material.name|default:"Not specified" }}</div>
-                <div><strong>Gender:</strong> {{ product.gender.name|default:"Not specified" }}</div>
+                <p>
+                  <strong>Gender:</strong>
+                    <a href="{% url 'products:type_products' type_name=product.gender.name %}">
+                      {{ product.gender.name }}
+                    </a>
+                </p>
                 <div><strong>Size:</strong> {{ product.size.name|default:"Not specified" }}</div>
                 <div><strong>Colour:</strong> {{ product.colour.name|default:"Not specified" }}</div>
             </div>
