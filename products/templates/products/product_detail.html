@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,7 +143,7 @@
     <div class="container">
         <!-- Красивая кнопка стрелки слева сверху -->
         <a href="{% url 'products:product_list' %}" class="back-link">
-            <i class="fas fa-arrow-left"></i> К списку товаров
+            <i class="fas fa-arrow-left"></i> Back to list
         </a>
 
         <div class="product-detail text-center">
@@ -161,72 +164,71 @@
                 {% endif %}
             </h1>
 
-            <p>{{ product.description }}</p>
-            <div class="price">{{ product.price }} рублей</div>
+            <p>{{ product.description|safe }}</p>
+            <div class="price">{{ product.price }} $</div>
             <div class="details">
                 <div>
-                <p>
-                  <strong>Category:</strong>
-                  <a href="{% url 'products:type_category_products' type_name=product.gender.name category_name=product.category.name %}">
-                      {{ product.category.name }}
-                  </a>
-                </p>
+                    <p><strong>Category:</strong>
+                        <a href="{% url 'products:category_products' category_name=product.category.name %}">
+                            {{ product.category.name }}
+                        </a>
+                    </p>
 
-                {% if user.is_staff %}
-                    <div><strong>Discount:</strong> {{ product.discount.name|default:"No discount" }}</div>
-                    <div><strong>SKU:</strong> {{ product.sku }}</div>
-                {% endif %}
-                <div><strong>Material:</strong> {{ product.material.name|default:"Not specified" }}</div>
-                <p>
-                  <strong>Gender:</strong>
-                    <a href="{% url 'products:type_products' type_name=product.gender.name %}">
-                      {{ product.gender.name }}
-                    </a>
-                </p>
-                <div><strong>Size:</strong> {{ product.size.name|default:"Not specified" }}</div>
-                <div><strong>Colour:</strong> {{ product.colour.name|default:"Not specified" }}</div>
+                    {% if user.is_staff %}
+                        <div><strong>Discount:</strong> {{ product.discount.name|default:"No discount" }}</div>
+                        <div><strong>SKU:</strong> {{ product.sku }}</div>
+                    {% endif %}
+                    <div><strong>Material:</strong> {{ product.material.name|default:"Not specified" }}</div>
+                    <p><strong>Gender:</strong> {{ product.gender.name }}</p>
+                    <div><strong>Size:</strong> {{ product.size.name|default:"Not specified" }}</div>
+                    <div><strong>Colour:</strong> {{ product.colour.name|default:"Not specified" }}</div>
+                </div>
             </div>
 
             <!-- Секция Related Products -->
-            <div class="related-products">
-                <h2>Related Products</h2>
-                <div class="d-flex flex-wrap justify-content-center">
-                    {% for related_product in product.related_products.all %}
-                        <div class="product">
-                            {% if related_product.photos.first %}
-                                <img src="{{ related_product.photos.first.image.url }}" alt="{{ related_product.name }}">
-                            {% else %}
-                                <img src="/path/to/placeholder.jpg" alt="No image available">
-                            {% endif %}
-                            <h3><a href="{% url 'products:detail' related_product.pk %}">{{ related_product.name }}</a></h3>
-                            <p>{{ related_product.description }}</p>
-                            <div class="price">{{ related_product.price }} рублей</div>
-                        </div>
-                    {% empty %}
-                        <p>No related products.</p>
-                    {% endfor %}
+            {% if product.related_products.exists %}
+                <div class="related-products">
+                    <h2>Related Products</h2>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        {% for related_product in product.related_products.all %}
+                            <div class="product">
+                                {% if related_product.photos.first %}
+                                    <img src="{{ related_product.photos.first.image.url }}" alt="{{ related_product.name }}">
+                                {% else %}
+                                    <img src="/path/to/placeholder.jpg" alt="No image available">
+                                {% endif %}
+                                <h3><a href="{% url 'products:detail' related_product.pk %}">{{ related_product.name }}</a></h3>
+                                <p>{{ related_product.description }}</p>
+                                <div class="price">{{ related_product.price }} $</div>
+                            </div>
+                        {% empty %}
+                            <p>No related products.</p>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
 
             <!-- Секция Full Collection -->
-            <div class="full-collection">
-                <h2>Full Collection</h2>
-                <div class="d-flex flex-wrap justify-content-center">
-                    {% for collection_product in product.full_collection.all %}
-                        <div class="product">
-                            {% if collection_product.photos.first %}
-                                <img src="{{ collection_product.photos.first.image.url }}" alt="{{ collection_product.name }}">
-                            {% else %}
-                                <img src="/path/to/placeholder.jpg" alt="No image available">
-                            {% endif %}
-                            <h4><a href="{% url 'products:detail' collection_product.pk %}">{{ collection_product.name }}</a></h4>
-                            <p>{{ collection_product.price }} $</p>
-                        </div>
-                    {% empty %}
-                        <p>No products in this collection.</p>
-                    {% endfor %}
+            {% if product.full_collection.exists %}
+                <div class="full-collection">
+                    <h2>Full Collection</h2>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        {% for collection_product in product.full_collection.all %}
+                            <div class="product">
+                                {% if collection_product.photos.first %}
+                                    <img src="{{ collection_product.photos.first.image.url }}" alt="{{ collection_product.name }}">
+                                {% else %}
+                                    <img src="/path/to/placeholder.jpg" alt="No image available">
+                                {% endif %}
+                                <h4><a href="{% url 'products:detail' collection_product.pk %}">{{ collection_product.name }}</a></h4>
+                                <p>{{ collection_product.price }} $</p>
+                            </div>
+                        {% empty %}
+                            <p>No products in this collection.</p>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -234,3 +236,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/js/bootstrap.min.js"></script>
 </body>
 </html>
+{% endblock %}

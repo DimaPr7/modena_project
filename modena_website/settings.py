@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "modena_website.apps.ModenaWebsiteConfig",
     "accounts",
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

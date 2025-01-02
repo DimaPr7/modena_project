@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -7,7 +8,7 @@ class Product(models.Model):
         verbose_name = _('Продукт')
 
     name = models.CharField(max_length=64)
-    description = models.TextField()  # Big text field for descriptions
+    description = RichTextField()
     category = models.ForeignKey("core.Category", on_delete=models.CASCADE)  # Link to Category
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Decimal for price
     discount = models.ForeignKey("core.Discount", on_delete=models.SET_NULL, null=True, blank=True)  # Link to Discount

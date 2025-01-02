@@ -37,11 +37,18 @@ class Gender(models.Model):
 
 
 class Photo(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_photos")
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="product_photos",
+        blank=True,
+        null=True,
+    )
     image = models.ImageField(upload_to='products/photos/', blank=True, null=True)
 
     def __str__(self):
-        return f"Photo {self.id} for {self.product.name}"
+        return f"Photo {self.id} for {self.product.name if self.product else 'No Product'}"
+
 
 
 class Size(models.Model):

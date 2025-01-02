@@ -25,29 +25,55 @@
                 <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" href="/about/">About Us</a></li>
                 <li class="nav-item"><a class="nav-link active" href="/contacts/">Contacts</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/shop/">Shop</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/products/">Shop</a></li>
                 <!-- Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Category
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="#">Men</a></li>
-                        <li><a class="dropdown-item" href="#">Women</a></li>
-                        <li><a class="dropdown-item" href="#">Children</a></li>
-                    </ul>
-                </li>
+                <a class="nav-link dropdown-toggle" href="#" id="mensDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Men
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="mensDropdown">
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name='mens' category_name='Trousers' %}">Trousers</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="mens" category_name="Shorts" %}">Shirts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="mens" category_name="Jackets" %}">Jackets</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="womenDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Women
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="womenDropdown">
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="womens" category_name="Dresses" %}">Dresses</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="womens" category_name="Tops" %}">Tops</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="womens" category_name="Skirts" %}">Skirts</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="childrenDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Children
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="childrenDropdown">
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="kids" category_name="Toys"%}">Toys</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products:type_category_products' type_name="kids" category_name="Children Dress"%}">Clothes</a></li>
+                </ul>
+            </li>
+
                 <li class="nav-item"><a class="nav-link" href="/cart/">Cart</a></li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" method="get" action="{% url 'products:product_list' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-                <a href="{% url 'login' %}" class="btn btn-primary ms-2">Login</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="btn btn-danger ms-2">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary ms-2">Login</a>
+                {% endif %}
             </form>
         </div>
     </div>
 </nav>
-
 
     <!-- Main content -->
     <div class="content">
@@ -62,15 +88,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <h5>Contact Us</h5>
-                    <p>Email: <a href="mailto:support@yourbrand.com" class="text-white">support@yourbrand.com</a></p>
+                    <p>Email: <a href="mailto:support@yourbrand.com" class="text-white">support@modena.com</a></p>
                     <p>Phone: +1 (123) 456-7890</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <h5>Follow Us</h5>
                     <div class="footer-icons">
-                        <a href="https://www.instagram.com/yourbrand" class="me-3" target="_blank"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@yourbrand" class="me-3" target="_blank"><i class="bi bi-tiktok"></i></a>
-                        <a href="https://twitter.com/yourbrand" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.instagram.com/modena" class="me-3" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@modena" class="me-3" target="_blank"><i class="bi bi-tiktok"></i></a>
+                        <a href="https://twitter.com/modena" target="_blank"><i class="bi bi-twitter"></i></a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -83,7 +109,7 @@
                 </div>
             </div>
             <div class="text-center mt-3">
-                <p>&copy; 2024 Your Brand. All rights reserved.</p>
+                <p>&copy; 2024 Modena. All rights reserved.</p>
             </div>
         </div>
     </footer>
