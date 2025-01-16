@@ -18,6 +18,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from .views import HomePageView
+from core import views
+from products.views import ContactView, AboutUsView
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path, include
+from .views import HomePageView
+from core import views
 from products.views import ContactView, AboutUsView
 
 urlpatterns = [
@@ -27,5 +36,10 @@ urlpatterns = [
     path('contacts/', ContactView.as_view(), name='contacts'),
     path('about/', AboutUsView.as_view(), name='about_us'),
     path('accounts/', include('accounts.urls')),
-
+    path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('remove-from-cart/<int:product_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('clear-cart/', views.clear_cart, name='clear_cart'),
+    path('view_cart/', views.view_cart, name='view_cart'),
+    path('update-cart-item/<int:item_id>/', views.update_cart_item, name='update_cart_item'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
