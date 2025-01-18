@@ -20,9 +20,7 @@ class Product(models.Model):
     colour = models.ForeignKey("core.Colour", on_delete=models.SET_NULL, null=True, blank=True)  # Link to Colour
     related_products = models.ManyToManyField("self", blank=True)  # Self-related products
     full_collection = models.ManyToManyField("self", blank=True)  # Self-related collection
+    quantity = models.PositiveIntegerField(default=0)  # New field for quantity
 
     def __str__(self):
         return self.name
-
-#   bucket = pass #unknown
-#   wanted = pass #
