@@ -311,7 +311,7 @@
         <h1 class="display-5">{{ product.name }}</h1>
         <p class="text-danger fw-bold fs-4">${{ product.price }}</p>
         <p class="text-muted">
-          This is a short description of the product. It explains the key features and benefits to entice users to buy.
+          {{ product.description|safe }}
         </p>
         <p class="text-muted">
     <strong>Material:</strong> {{ product.material.name|default:"Not specified" }}</p>

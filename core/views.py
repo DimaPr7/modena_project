@@ -1,9 +1,15 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import get_object_or_404, render, redirect
 from products.models import Product
 from .models import Cart, CartItem
 
+def get_or_create_cart(user):
+    cart, created = Cart.objects.get_or_create(user=user)
+    return cart
 
+@transaction.atomic
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart = request.user.cart
@@ -46,15 +52,34 @@ def update_cart_item(request, item_id):
             if new_quantity > 0:
                 item.quantity = new_quantity
                 item.save()
-                # Recalculate the total price of the cart
                 cart = item.cart
-                cart.update_total_price()  # Assuming there's a method to update the total price
+                cart.update_total_price()
                 cart.save()
                 messages.success(request, 'Item quantity updated')
-                return redirect('view_cart')  # Redirecting to the cart page
+                return redirect('view_cart')
             else:
                 messages.error(request, 'Quantity must be greater than zero')
                 return redirect('view_cart')
         except CartItem.DoesNotExist:
             messages.error(request, 'Item not found in cart')
             return redirect('view_cart')
+
+
+@login_required
+def checkout_view(request):
+    cart = request.user.cart
+    items = cart.items.all()
+
+    subtotal = sum(item.product.price * item.quantity for item in items)
+    shipping_cost = 57
+    total = subtotal + shipping_cost
+
+    context = {
+        'items': items,
+        'subtotal': subtotal,
+        'shipping_cost': shipping_cost,
+        'total': total,
+    }
+    return render(request, 'checkout.html', context)
+
+

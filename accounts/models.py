@@ -7,12 +7,12 @@ class CustomUser(AbstractUser):
 
     groups = models.ManyToManyField(
         Group,
-        related_name='customuser_set',  # Уникальное имя для обратной ссылки
+        related_name='customuser_set',
         blank=True,
     )
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='customuser_set',  # Уникальное имя для обратной ссылки
+        related_name='customuser_set',
         blank=True,
     )
 

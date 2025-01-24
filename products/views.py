@@ -11,15 +11,12 @@ class ProductListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        queryset = Product.objects.all()  # Default queryset
-
-        search_query = self.request.GET.get('q')  # Get search query from the GET request
+        queryset = Product.objects.all()
+        search_query = self.request.GET.get('q')
         if search_query:
-            # Разбиваем запрос на слова и ищем по каждому из них
             search_terms = search_query.split()
             for term in search_terms:
-                queryset = queryset.filter(name__icontains=term)  # Поиск по части строки
-
+                queryset = queryset.filter(name__icontains=term)
         return queryset
 
 
@@ -29,14 +26,12 @@ class ProductCategoryListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        # Проверяем, есть ли параметр type_name
         category_name = self.kwargs.get("category_name", None)
         if category_name:
-            # Если type_name указан, фильтруем продукты по Категории
             category_name = get_object_or_404(Category, name=category_name)
             return Product.objects.filter(category=category_name)
-        # Если type_name нет, возвращаем все продукты
         return Product.objects.all()
+
 
 class ProductCategoryTypeListView(ListView):
     model = Product
@@ -44,15 +39,10 @@ class ProductCategoryTypeListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        # Получаем параметры type_name и category_name
         type_name = self.kwargs.get("type_name")
         category_name = self.kwargs.get("category_name")
-
-        # Проверка наличия типа (gender) и категории
         gender = get_object_or_404(Gender, name=type_name)
         category = get_object_or_404(Category, name=category_name)
-
-        # Фильтруем продукты по гендеру и категории
         return Product.objects.filter(gender=gender, category=category)
 
     def get_context_data(self, **kwargs):
@@ -66,7 +56,7 @@ class ProductCategoryTypeListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = "products/product_detail.html"  # Убедитесь, что такой шаблон существует
+    template_name = "products/product_detail.html"
     context_object_name = 'product'
 
 
@@ -78,8 +68,10 @@ class ProductUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('products:detail', kwargs={'pk': self.object.pk})
 
+
 class ContactView(TemplateView):
     template_name = 'contacts.html'
+
 
 class AboutUsView(TemplateView):
     template_name = 'about_us.html'
