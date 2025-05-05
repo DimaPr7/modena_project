@@ -1,40 +1,182 @@
-# Ignore PyCharm project files
-.idea/
-*.iml
+# ========================================
+# General Python/Django/.PyCharm .gitignore
+# Created using https://www.toptal.com/developers/gitignore
+# and merged with custom rules
+# ========================================
 
-# Ignore virtual environments
-venv/
-ENV/
-
-# Ignore compiled bytecode and cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Ignore database files
-db.sqlite3
-
-# Ignore environment variable settings
-.env
-
-# Ignore static and media files
-/static/
-/media/
-
-# Ignore coverage reports and test results
-htmlcov/
-.tox/
-coverage/
-*.cover
-*.log
-
-# OS-specific
+### OS-Specific ###
 .DS_Store
 Thumbs.db
 
-# Ignore Python egg files
-*.egg
-*.egg-info/
-dist/
+### Virtual Environments ###
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+### Python ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+### C Extensions ###
+*.so
+
+### Distribution / Packaging ###
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+### PyInstaller ###
+*.spec
+*.manifest
+
+### Logs and Coverage ###
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+### Database ###
+db.sqlite3
+db.sqlite3-journal
+
+### Environment Variables ###
+.env
+
+### Static/Media Files ###
+/static/
+media/
+
+### Translations ###
+*.mo
+*.pot
+
+### Django ###
+local_settings.py
+
+### Flask ###
+instance/
+.webassets-cache
+
+### Scrapy ###
+.scrapy
+
+### Sphinx Documentation ###
+docs/_build/
+
+### PyBuilder ###
+.pybuilder/
+target/
+
+### Jupyter/IPython ###
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+### IDEs ###
+# PyCharm/JetBrains
+.idea/
+*.iml
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/replstate.xml
+.idea/sonarlint/
+.idea/httpRequests
+.idea/caches/build_file_checksums.ser
+
+# IntelliJ
+out/
+
+# Other JetBrains-based
+.idea_modules/
+atlassian-ide-plugin.xml
+
+### Build Tools ###
+cmake-build-*/
+
+### Type Checkers ###
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+### Poetry ###
+poetry.toml
+# Uncomment if you want to ignore the lock file:
+# poetry.lock
+
+### pipenv ###
+# Pipfile.lock
+
+### pdm ###
+.pdm.toml
+# pdm.lock
+
+### PEP 582 ###
+__pypackages__/
+
+### Other Tools ###
+.spyderproject
+.spyproject
+.ropeproject
+.pyrightconfig.json
+.ruff_cache/
+
+### Celery ###
+celerybeat-schedule
+celerybeat.pid
+
+### SageMath ###
+*.sage.py
+
+# ========================================
+# End of .gitignore
+# ========================================

@@ -66,8 +66,10 @@
                                 <img src="/path/to/placeholder.jpg" class="card-img-top" alt="No image available">
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="{% url 'products:detail' product.pk %}">{{ product.name }}</a>
+                                <h5 class="card-title d-flex align-items-center justify-content-between">
+                                    <a href="{% url 'products:detail' product.pk %}" class="text-decoration-none text-dark">
+                                        {{ product.name }}
+                                    </a>
                                     {% if user.is_staff %}
                                         <a href="{% url 'products:update' pk=product.pk %}" class="edit-icon" title="Edit product">
                                             <i class="fas fa-pencil-alt"></i>

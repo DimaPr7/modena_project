@@ -36,6 +36,9 @@ class Gender(models.Model):
         ('kids', _('Kids')),
     ])
 
+    def __str__(self):
+        return self.name
+
 
 class Photo(models.Model):
     product = models.ForeignKey(
@@ -48,7 +51,7 @@ class Photo(models.Model):
     image = models.ImageField(upload_to='products/photos/', blank=True, null=True)
 
     def __str__(self):
-        return f"Photo {self.id} for {self.product.name if self.product else 'No Product'}"
+        return f"{self.image.name.split('/')[-1]}"
 
 
 class Size(models.Model):
