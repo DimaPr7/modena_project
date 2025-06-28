@@ -44,3 +44,4 @@ urlpatterns = [
     path('checkout/', views.checkout_view, name='checkout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
