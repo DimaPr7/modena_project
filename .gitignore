@@ -77,7 +77,6 @@ db.sqlite3-journal
 
 ### Static/Media Files ###
 /static/
-media/
 
 ### Translations ###
 *.mo
