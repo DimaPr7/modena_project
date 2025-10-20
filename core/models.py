@@ -9,9 +9,15 @@ from django.utils.translation import gettext_lazy as _
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
+    gender = models.ForeignKey(
+        "core.Gender",
+        on_delete=models.CASCADE,
+        related_name="categories",
+        verbose_name="Пол",
+    )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.gender.name})"
 
 
 class Discount(models.Model):
