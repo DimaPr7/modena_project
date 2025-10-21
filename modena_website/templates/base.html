@@ -11,23 +11,22 @@
     <link rel="stylesheet" href="style.css">
     <style>
 .icon-link i {
-    font-size: 20px; /* Размер иконки */
-    color: #000; /* Черный цвет иконки */
-    transition: transform 0.3s ease, color 0.3s ease; /* Плавные анимации для наведения */
+    font-size: 20px;
+    color: #000;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .icon-link:hover i {
-    {#color: #f44336; /* Цвет при наведении (можно выбрать любой) */#}
-    transform: translateY(-5px); /* Легкий эффект подъема */
+    transform: translateY(-5px);
 }
 
 .navbar {
     position: relative;
-    z-index: 1000; /* высокий z-index для navbar */
+    z-index: 1000;
 }
 .content {
     position: relative;
-    z-index: 999; /* Убедитесь, что контент не перекрывает navbar */
+    z-index: 999;
 }
     </style>
 </head>
@@ -103,10 +102,8 @@
     </div>
 </nav>
 
-    <!-- Main content -->
     <div class="content">
         {% block content %}
-        <!-- Page-specific content will go here -->
         {% endblock %}
     </div>
 

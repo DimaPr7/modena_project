@@ -26,9 +26,9 @@ def register(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password1'])  # Установить пароль
+            user.set_password(form.cleaned_data['password1'])
             user.save()
-            login(request, user)  # Логин после сохранения
+            login(request, user)
             return redirect('home')
     else:
         form = SignUpForm()

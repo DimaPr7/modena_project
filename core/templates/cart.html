@@ -16,9 +16,9 @@
         .product__cart__item img {
             border-radius: 8px;
             border: 1px solid #ddd;
-            max-width: 80px;  /* Максимальная ширина */
-            max-height: 80px; /* Максимальная высота */
-            object-fit: contain; /* Сохраняет пропорции изображения */
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: contain;
         }
 
         .cart__discount input {
@@ -41,7 +41,7 @@
         }
 
         footer {
-            margin-top: auto; /* Pushes footer to the bottom */
+            margin-top: auto;
         }
     </style>
 
@@ -52,7 +52,6 @@
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <!-- Cart Table -->
                 <div class="col-lg-8">
                     <div class="shopping__cart__table table-responsive">
                         <table class="table table-hover">
@@ -65,7 +64,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Loop Through Cart Items -->
                                 {% for item in items %}
                                 <tr>
                                     <td class="product__cart__item">
@@ -97,7 +95,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- Buttons -->
                     <div class="d-flex justify-content-between mt-3">
                       <a href="/products/" class="btn btn-warning text-white">
                           <i class="fa fa-shopping-cart"></i> Continue Shopping
@@ -109,7 +106,6 @@
 
                 </div>
 
-                <!-- Summary Section -->
                 <div class="col-lg-4">
                     <div class="cart__discount p-3 border mb-4">
                         <h6 class="text-center">Discount Codes</h6>
