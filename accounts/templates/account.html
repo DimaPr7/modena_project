@@ -4,7 +4,7 @@
     <h1 class="text-center" style="font-size: 2.5em; margin-bottom: 30px; color: #4CAF50; font-weight: 600;">User Profile</h1>
 
     <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <h2 style="font-size: 2em; color: #333; font-weight: 500;">Your name: {{ user.first_name }}</h2>
+        <h2 style="font-size: 2em; color: #333; font-weight: 500;">Your name: {{ user.username }}</h2>
         <p style="font-size: 1.1em; color: #555;">Email: <strong>{{ user.email }}</strong></p>
         <p style="font-size: 1.1em; color: #555;">Registered: <strong>{{ user.date_joined|date:"d M Y" }}</strong></p>
         <p style="font-size: 1.1em; color: #555;">Last login: <strong>{{ user.last_login|date:"d M Y H:i" }}</strong></p>

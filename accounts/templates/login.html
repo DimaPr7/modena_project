@@ -46,11 +46,20 @@
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
-        </form>
+        <div class="text-center mt-3 text-muted small">
+    <h4>You can login with:</h4>
+  <div class="text-center mt-3 text-muted small">
+    <h4><strong>username:</strong> admin</h4>
+    <h4><strong>password:</strong> admin1</h4>
+</div>
 
-        <p class="text-center mt-3">
-            Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>
-        </p>
+
+</div>
+
+        </form>
+{#        <p class="text-center mt-3">#}
+{#            Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>#}
+{#        </p>#}
     </div>
 </div>
 {% endblock %}
