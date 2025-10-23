@@ -44,17 +44,20 @@ Modena is a modern web platform for managing an online clothing store. It featur
     ```
 
 ## 📸 Screenshots
-![img.png](media/other/img.png)
-![img_1.png](media/other/img_1.png)
-![img_2.png](media/other/img_2.png)
-![img_3.png](media/other/img_3.png)
-![img_4.png](media/other/4.png)
-![img_1.png](media/other/5.png)
-![img_2.png](media/other/6.png)
-![img_3.png](media/other/7.png)
-![img_4.png](media/other/8.png)
-![img_5.png](media/other/9.png)
-![img_6.png](media/other/10.png)
+![img.png](media/other/image_1.jpg)
+![img_1.png](media/other/image_2.jpg)
+![img_2.png](media/other/image_3.jpg)
+![img_3.png](media/other/image_4.jpg)
+![img_4.png](media/other/image_5.jpg)
+![img_1.png](media/other/image_6.jpg)
+![img_2.png](media/other/image_7.jpg)
+![img_3.png](media/other/image_8.jpg)
+![img_4.png](media/other/image_9.jpg)
 
+Contact & Links
+Email: i.love.python.lt@gmail.com
+Live site: https://modena-u9vt.onrender.com
 
-© 2025 Modena. All rights reserved.
+© Modena — Django eCommerce
+Version 1.0
+Last updated: October 2025
