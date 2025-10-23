@@ -9,7 +9,7 @@ Modena is a modern web platform for managing an online clothing store. It featur
 - **Related products and collections** to enhance shopping experience.
 - **Multiple images per product** for better product representation.
 - **Responsive modern UI** for desktop.
-- **User registration** and **profile management**.
+- **User login** and **profile management**.
 - **Add products to cart** and modify ordered quantities.
 - **Checkout page** for completing purchases
 
@@ -18,30 +18,6 @@ Modena is a modern web platform for managing an online clothing store. It featur
 - **SQLITE3** for data storage.
 - **HTML, CSS (Bootstrap 4.5.3)** for front-end design.
 
-## ⚙️ Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/DimaPr7/modena_project
-    cd modena
-    ```
-
-2. Install the dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. Create and configure the `.env` file (based on `.env.example`).
-
-4. Apply migrations and run the development server:
-    ```bash
-    python manage.py migrate
-    python manage.py runserver
-    ```
-
-5. Open your browser and go to:
-    ```
-    http://127.0.0.1:8000
-    ```
 
 ## 📸 Screenshots
 ![img.png](media/other/image_1.jpg)
@@ -58,6 +34,6 @@ Contact & Links
 Email: i.love.python.lt@gmail.com
 Live site: https://modena-u9vt.onrender.com
 
-© Modena — Django eCommerce
+© Modena
 Version 1.0
 Last updated: October 2025
